@@ -1,5 +1,4 @@
 WITH CTE AS (
-
 select
 t.*,
 w.*
