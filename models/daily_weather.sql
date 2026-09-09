@@ -26,8 +26,9 @@ with daily_weather as (
     from daily_weather
     group by daily_weather, weather
 
-    -- you cannot use where therefore
+    -- you  use qualify to filter the results of a window function
     qualify  row_number() over (PARTITION by daily_weather order by (count(weather)) desc )  = 1
+
  )
 
 select * from daily_weather_agg
