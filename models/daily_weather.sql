@@ -7,7 +7,6 @@ with daily_weather as (
     humidity,
     clouds
     from {{ source('demo', 'weather') }}
-    limit 10
 )
 
 ,
@@ -20,7 +19,6 @@ with daily_weather as (
     ROUND(avg(pressure),2) as avg_pressure,
     avg(humidity) as avg_humidity,
     avg(clouds) as avg_clouds,
-
     count (weather) ,
     row_number() over (PARTITION by daily_weather order by (count(weather)) desc ) AS row_number
     from daily_weather
